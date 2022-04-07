@@ -50,8 +50,7 @@ function playRound ( computerSelection , playerSelection ) {
             else               { winnerText = "You win this Round."}
     }
 
-    console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText)
-    console.log (x);
+    console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText);
     return x;
 }
 
