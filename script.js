@@ -11,33 +11,47 @@ function computerSelection(){
         return "Scissors";
     }
 }
-console.log(computerSelection())
-function playRound ( computerSelection , playerSelection ) {
-    if (computerSelection === playerSelection ){
-        return "Computer choose "+computerSelection+ ". You chose "+playerSelection+". Its a Draw"
 
+function playRound ( computerSelection , playerSelection ) {
+    let winnerText = "Its a Draw.";
+    let x = 0;
+
+    if (computerSelection === playerSelection ){
+        
     }else{
         switch (computerSelection) {
+
             case ("Paper"):
                 if ( playerSelection === "Rock" ){
-                    return "Computer chose Paper. You chose Rock. Computer wins this round."
-
+                    x = 1;              
                 }else if (playerSelection === "Scissors"){
-                    return "Computer chose Paper. You chose Scissors. You win this round."
+                   
                 }
+
             case ("Scissors"):
                 if ( playerSelection === "Rock" ){
-                    return "Computer chose Scissors. You chose Rock. You win this round."
+                    
                 }else if (playerSelection === "Paper"){
-                    return "Computer chose Scissors. You chose Scissors. Computer wins this round."
+                    x = 1;
                 }
+
             case ("Rock"):
                 if (playerSelection === "Scissors" ){
-                    return "Computer chose Rock. You Chose Scissors. Computer wins this round"
+                    x = 1;
+                    console.log(x);
                 }else if (playerSelection === "Paper"){
-                    return "Computer chose Rock. you Chose Paper. You win this round"
+                    
+                    console.log(x);
                 }     
-         }
+         }  
+            if (x === 1)       { winnerText = "Computer wins this Round."}
+            else                  { winnerText = "You win this Round."}
     }
+
+    console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText)
 }
-        
+
+function game (){}
+/*PENDING UPGRADES:
+    *playRound has one final text that concatenates in accordance to cases, instead 
+    of having a text for every case.*/
