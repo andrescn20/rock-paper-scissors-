@@ -149,8 +149,6 @@ function game(){ /*Main Function*/
                     playedRounds++;
                     break; 
 
-                case (0):
-                    playedRounds++; 
             }
         }
     
