@@ -18,33 +18,34 @@ shows a message declaring the winner of the round*/
 
 function playRound ( computerSelection , playerSelection ) {
     let winnerText = "Its a Draw.";
+    x=0;
     let win = x;
     if (computerSelection === playerSelection ){
         x = 0;
     }else{
-        switch (computerSelection) {
+        switch (playerSelection) {
 
             case ("Paper"):
-                if ( playerSelection === "Rock" ){
+                if ( computerSelection === "Rock" ){
                     win = 1;
 
-                }else if (playerSelection === "Scissors"){
+                }else if (computerSelection === "Scissors"){
                     win = 2; 
                 }
                 break;
 
             case ("Scissors"):
-                if ( playerSelection === "Rock" ){
+                if ( computerSelection === "Rock" ){
                     win = 2; 
 
-                }else if (playerSelection === "Paper"){
+                }else if (computerSelection === "Paper"){
                     win = 1;
                 }
                 break;
             case ("Rock"):
-                if (playerSelection === "Scissors" ){
+                if (computerSelection === "Scissors" ){
                     win = 1;
-                }else if (playerSelection === "Paper"){
+                }else if (computerSelection === "Paper"){
                     win = 2; 
                 }
                 break;    
@@ -54,9 +55,9 @@ function playRound ( computerSelection , playerSelection ) {
             }
             
     }
-    if (win === 1)       { winnerText = "Computer wins this Round."}
-    else if (win ===2)   { winnerText = "You win this Round."}
-    else if (win === 3)  { winnerText = "This Round failed"}
+    if (win === 2)       { winnerText = "Computer wins this Round."}
+    else if (win ===1)   { winnerText = "You win this Round."}
+    else if (win === 3)  { winnerText = "This Round failed."}
     x = win;
     console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText);
 }
@@ -95,10 +96,10 @@ function game(){
                 if (point === 0){
                     playercount = playercount;
                     computercount = computercount;
-                } else if (point === 1){
+                } else if (point === 2){
                     playercount = playercount;
                     computercount = computercount + 1;
-                } else if (point === 2){
+                } else if (point === 1){
                     playercount = playercount +1;
                     computercount = computercount;
             }
