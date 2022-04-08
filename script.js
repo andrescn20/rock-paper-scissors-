@@ -7,9 +7,16 @@ function computerSelection(){
     let selection = parseInt(Math.random()*3); /*Random number from 0 to 2*/
 
     switch (selection){
-        case selection === 0 : return "Paper";
-        case selection === 1 : return "Rock";
-        default              : return "Scissors";
+        case 0 : 
+            return "Paper";
+            break;
+
+        case 1 :
+             return "Rock";
+             break;
+             
+        default:
+             return "Scissors";
     }
 }
 
