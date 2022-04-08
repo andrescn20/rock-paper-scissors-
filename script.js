@@ -108,21 +108,21 @@ function game(){ /*Main Function*/
     let computerPoints = 0;
     let playedRounds = 0;
     
-    do {  
+    do {  /*Loops until the User's input is an even number between 1 and 10*/
         let numberOfRoundsLoop = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
 
-        if     (numberOfRoundsLoop > 10) {
+        if     (Math.abs(numberOfRoundsLoop) > 10) {
             numberOfRounds = numberOfRoundsLoop
             alert ('Dont be greedy: Please type a number smaller than 10.');
         }
 
-        else if(numberOfRoundsLoop < 10) {
+        else if(Math.abs(numberOfRoundsLoop) < 10) {
 
             if ( (numberOfRoundsLoop % 2) === 0){
                 alert ('Please enter an odd number to avoid a tie.');
                 numberOfRounds = 11;
             } else {
-                numberOfRounds = numberOfRoundsLoop
+                numberOfRounds = Math.abs(numberOfRoundsLoop);
             }
         }
 
