@@ -131,7 +131,7 @@ function game(){ /*Main Function*/
             alert('Invalid Input. Only numbers accepted');
         }
       }
-    while (numberOfRounds > 10)
+    while (numberOfRounds >= 10)
     
         
     while (playedRounds < numberOfRounds) {
