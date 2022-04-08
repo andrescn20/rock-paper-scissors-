@@ -64,43 +64,51 @@ function playRound ( computerSelection , playerSelection ) {
 /*Main Function for gameplay. Loops 5 rounds and adds one point for every win. Shows global winner
 at the end.*/
 function game(){
-    let n = window.prompt('Define how many rounds decide the winner.', '5');
+    let n = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
     let playercount = 0;
     let computercount = 0;
-    
-    for (i=0; i < n; i++) {
+
+    if (n > 10) {
+
+        alert ('Too many rounds. Max = 10 Rounds')
+
+
+    } else {
+        for (i=0; i < (n); i++) {
            
-        /*Ask User for Selection*/
-        playerSelection = window.prompt('Round #'+(i+1)+'Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
+            /*Ask User for Selection*/
+            playerSelection = window.prompt('Round #'+(i+1)+'Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
 
-        /*Round is played*/
-        playRound(computerSelection(), playerSelection);
+            /*Round is played*/
+            playRound(computerSelection(), playerSelection);
 
-        let point = x; 
+            let point = x; 
 
-            if (point === 0){
-            playercount = playercount;
-            computercount = computercount;
-            } else if (point === 1){
-                playercount = playercount;
-                computercount = computercount + 1;
-            } else if (point === 2){
-                playercount = playercount +1;
-                computercount = computercount;
+                if (point === 0){
+                    playercount = playercount;
+                    computercount = computercount;
+                } else if (point === 1){
+                    playercount = playercount;
+                    computercount = computercount + 1;
+                } else if (point === 2){
+                    playercount = playercount +1;
+                    computercount = computercount;
             }
         }
+    
 
-    let winner = 0; 
-    let globalWinnerText = "This Epic Showdown ends up as a Draw"
+        let winner = 0; 
+        let globalWinnerText = "This Epic Showdown ends up as a Draw"
 
-    if (playercount > computercount){
+        if (playercount > computercount){
 
-         globalWinnerText = "You won this match... We'll meet again"
+            globalWinnerText = "You won this match... We'll meet again"
 
-    } else if (playercount < computercount){
+        } else if (playercount < computercount){
         
-        globalWinnerText = "The Computer won... as expected."
-    }
+            globalWinnerText = "The Computer won... as expected."
+        }
 
-    console.log(globalWinnerText)
+        console.log(globalWinnerText)
+    }
 }
