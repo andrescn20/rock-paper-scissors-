@@ -88,7 +88,7 @@ function correctCapitalization(i) {
     
     let playerInput = window.prompt('Round #'+(i+1)+': Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
     let first = playerInput.charAt(0); /*Gathers first letter of input*/
-    let rest = playerInput.slice(1);   /*Gathers the rest of the letters*/
+    let rest = playerInput.slice(1);   /*Gathers the rest of the letters of input*/
 
     return first.toUpperCase()+rest.toLowerCase();  /*Generate output with correct Capitalization*/
 }
@@ -97,33 +97,26 @@ function correctCapitalization(i) {
 
 function game(){ /*Main Function*/
 
-    let n = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
-    let playercount = 0;
-    let computercount = 0;
+    let numberOfRounds = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
+    let playerPoints = 0;
+    let computerPoints = 0;
     
-    if (n > 10) {
+    if (numberOfRounds > 10) {
 
-        alert ('Error: Please type a number smaller than 10.');
+        alert ('Dont be greedy: Please type a number smaller than 10.');
 
 
     } else {
-        for (i=0; i < (n); i++) {
+        
+        for (i=0; i < (numberOfRounds); i++) {
            
-            
-            /*Round is played*/
             playRound(computerSelection(), correctCapitalization(i));
-
-            let point = winnerStatus; 
-
-                if (point === 0){
-                    playercount = playercount;
-                    computercount = computercount;
-                } else if (point === 2){
-                    playercount = playercount;
-                    computercount = computercount + 1;
-                } else if (point === 1){
-                    playercount = playercount + 1;
-                    computercount = computercount;
+                
+            switch(winnerStatus){
+                case (1): playerPoints++;
+                    break;
+                case (2): computerPoints++;
+                    break; 
             }
         }
     
@@ -135,20 +128,20 @@ function game(){ /*Main Function*/
         console.log(globalWinnerText);
 
         }else {
-            if (playercount > computercount){
+            if (playerPoints > computerPoints){
 
                 globalWinnerText = "You won this match... We'll meet again"
 
-            } else if (playercount < computercount){
+            } else if (playerPoints < computerPoints){
         
                 globalWinnerText = "The Computer won... as expected."
 
-            } else if (playercount == computercount) {
+            } else if (playerPoints == computerPoints) {
                 globalWinnerText = "This match is a Draw"
 
             }
 
-            console.log('Computer scored: '+computercount+'. You scored: '+playercount+'. '+globalWinnerText);
+            console.log('Computer scored: '+computerPoints+'. You scored: '+playerPoints+'. '+globalWinnerText);
         }    
     
         
