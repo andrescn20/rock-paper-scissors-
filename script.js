@@ -61,6 +61,16 @@ function playRound ( computerSelection , playerSelection ) {
     console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText);
 }
 
+function upperCase(i) {
+    /*Ask User for Selection*/
+    let playerInput = window.prompt('Round #'+(i+1)+'Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
+    let first = playerInput.charAt(0);
+    let rest = playerInput.slice(1);
+    /*rest = playerInput.slice(playerInput.length()-1);*/
+    return first.toUpperCase()+rest.toLowerCase();
+}
+
+
 /*Main Function for gameplay. Loops 5 rounds and adds one point for every win. Shows global winner
 at the end.*/
 function game(){
@@ -68,7 +78,7 @@ function game(){
     let playercount = 0;
     let computercount = 0;
 
-    if (n > 10) {
+    if (n > 10 ) {
 
         alert ('Too many rounds. Max = 10 Rounds')
 
@@ -76,11 +86,9 @@ function game(){
     } else {
         for (i=0; i < (n); i++) {
            
-            /*Ask User for Selection*/
-            playerSelection = window.prompt('Round #'+(i+1)+'Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
-
+            
             /*Round is played*/
-            playRound(computerSelection(), playerSelection);
+            playRound(computerSelection(), upperCase(i));
 
             let point = x; 
 
