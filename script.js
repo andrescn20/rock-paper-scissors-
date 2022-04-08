@@ -34,15 +34,15 @@ function playRound ( computerSelection , playerSelection ) {
     let winnerText = "Its a Draw."; 
     winnerStatus = 0;  /*Reset winnerStatus to default*/
 
-    if (computerSelection === playerSelection ){  /*Determine who won the round*/
-        winnerStatus = 0;
+    if (computerSelection === playerSelection ){  /*Determines who won the round*/
+                    winnerStatus = 0;
 
     }else{
         switch (playerSelection) {
 
             case ("Paper"):
                 if ( computerSelection === "Rock" ){
-                    winnnerStatus = 1;
+                    winnerStatus = 1;
 
                 }else if (computerSelection === "Scissors"){
                     winnerStatus = 2; 
@@ -69,31 +69,34 @@ function playRound ( computerSelection , playerSelection ) {
 
             default: 
                 alert('Invalid input');
-                winnerStatus = 3;
+                    winnerStatus = 3;
             }
             
     }
 
-    if      (winnerStatus === 2){ winnerText = "Computer wins this Round."} 
+    if      (winnerStatus === 2)     { winnerText = "Computer wins this Round."} 
     else if (winnerStatus === 1)     { winnerText = "You win this Round."}
     else if (winnerStatus === 3)     { winnerText = "This Round failed."}
+
     confirmRoundExecution = 1; /*Round Correctly Executed*/
+
+    /*Generate Round winner text*/
     console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText);
 }
 
-function upperCase(i) {
-    /*Ask User for Selection*/
+function correctCapitalization(i) {
+    
     let playerInput = window.prompt('Round #'+(i+1)+': Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
-    let first = playerInput.charAt(0);
-    let rest = playerInput.slice(1);
-    /*rest = playerInput.slice(playerInput.length()-1);*/
-    return first.toUpperCase()+rest.toLowerCase();
+    let first = playerInput.charAt(0); /*Gathers first letter of input*/
+    let rest = playerInput.slice(1);   /*Gathers the rest of the letters*/
+
+    return first.toUpperCase()+rest.toLowerCase();  /*Generate output with correct Capitalization*/
 }
 
 
-/*Main Function for gameplay. Loops 5 rounds and adds one point for every win. Shows global winner
-at the end.*/
-function game(){
+
+function game(){ /*Main Function*/
+
     let n = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
     let playercount = 0;
     let computercount = 0;
@@ -108,7 +111,7 @@ function game(){
            
             
             /*Round is played*/
-            playRound(computerSelection(), upperCase(i));
+            playRound(computerSelection(), correctCapitalization(i));
 
             let point = winnerStatus; 
 
