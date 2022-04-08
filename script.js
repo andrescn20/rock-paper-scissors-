@@ -16,6 +16,9 @@ function computerSelection(){
 /*Variable defined to connect functions. The value of x is dependant on who won each round*/
 let x = 0;
 
+/*Variable that determines if wether the game ran or not. Changes once a round is correctly executed*/
+let confirmround = 0; 
+
 
 /*Receives selections from computer and player (input). Evaluates who won according to game rules. Lastly, 
 shows a message declaring the winner of the round*/
@@ -63,6 +66,7 @@ function playRound ( computerSelection , playerSelection ) {
     else if (win ===1)   { winnerText = "You win this Round."}
     else if (win === 3)  { winnerText = "This Round failed."}
     x = win;
+    confirmround = 1;
     console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText);
 }
 
@@ -83,7 +87,7 @@ function game(){
     let playercount = 0;
     let computercount = 0;
     
-    if (n > 10 || n === NaN) {
+    if (n > 10) {
 
         alert ('Error: Please type a number smaller than 10.');
 
@@ -110,18 +114,29 @@ function game(){
         }
     
 
-        let winner = 0; 
-        let globalWinnerText = "This Epic Showdown ends up as a Draw"
+        let globalWinnerText = "Invalid Input. Please Enter a number next time"
 
-        if (playercount > computercount){
+        if (confirmround === 0){
+            
+        console.log(globalWinnerText);
 
-            globalWinnerText = "You won this match... We'll meet again"
+        }else {
+            if (playercount > computercount){
 
-        } else if (playercount < computercount){
+                globalWinnerText = "You won this match... We'll meet again"
+
+            } else if (playercount < computercount){
         
-            globalWinnerText = "The Computer won... as expected."
-        }
+                globalWinnerText = "The Computer won... as expected."
 
-        console.log(globalWinnerText)
+            } else if (playercount == computercount) {
+                globalWinnerText = "This match is a Draw"
+
+            }
+
+            console.log('Computer scored: '+computercount+'. You scored: '+playercount+'. '+globalWinnerText);
+        }    
+    
+        
     }
 }
