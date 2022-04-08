@@ -96,17 +96,27 @@ function correctCapitalization(i) {
 
 
 function game(){ /*Main Function*/
-
-    let numberOfRounds = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
+    let numberOfRounds = 0;
     let playerPoints = 0;
     let computerPoints = 0;
     
-    if (numberOfRounds > 10) {
+    do {  
+        let numberOfRoundsLoop = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
 
-        alert ('Dont be greedy: Please type a number smaller than 10.');
-
-
-    } else {
+        if     (numberOfRoundsLoop > 10) {
+            numberOfRounds = numberOfRoundsLoop
+            alert ('Dont be greedy: Please type a number smaller than 10.');
+        }   
+        else if(numberOfRoundsLoop < 10) {
+             numberOfRounds = numberOfRoundsLoop
+        }
+        else{
+            numberOfRounds = 11;
+            alert('Invalid Input. Only numbers accepted');
+        }
+      }
+    while (numberOfRounds > 10)
+    
         
         for (i=0; i < (numberOfRounds); i++) {
            
@@ -128,6 +138,7 @@ function game(){ /*Main Function*/
         console.log(globalWinnerText);
 
         }else {
+
             if (playerPoints > computerPoints){
 
                 globalWinnerText = "You won this match... We'll meet again"
@@ -146,4 +157,3 @@ function game(){ /*Main Function*/
     
         
     }
-}
