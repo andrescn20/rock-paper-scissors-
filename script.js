@@ -3,8 +3,9 @@
 /*Randomly Generate Rock, Paper or Scissors*/
 
 function computerSelection(){
-    let selection = parseInt(Math.random()*3);
-    if(selection === 0){
+    
+    let selection = parseInt(Math.random()*3); /*Random number from 0 to 2*/
+    if(selection === 0){    /*Assigns a choice to every Possibility*/
         return "Paper";
     } else if (selection === 1){
         return "Rock";
@@ -12,8 +13,11 @@ function computerSelection(){
         return "Scissors";
     }
 }
+/*Variable defined to connect functions. The value of x is dependant on who won each round*/
 let x = 0;
-/*Receives selections from computer and player. Evaluates who won according to game rules. Lastly, 
+
+
+/*Receives selections from computer and player (input). Evaluates who won according to game rules. Lastly, 
 shows a message declaring the winner of the round*/
 
 function playRound ( computerSelection , playerSelection ) {
@@ -64,7 +68,7 @@ function playRound ( computerSelection , playerSelection ) {
 
 function upperCase(i) {
     /*Ask User for Selection*/
-    let playerInput = window.prompt('Round #'+(i+1)+'Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
+    let playerInput = window.prompt('Round #'+(i+1)+': Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
     let first = playerInput.charAt(0);
     let rest = playerInput.slice(1);
     /*rest = playerInput.slice(playerInput.length()-1);*/
@@ -78,10 +82,10 @@ function game(){
     let n = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
     let playercount = 0;
     let computercount = 0;
+    
+    if (n > 10 || n === NaN) {
 
-    if (n > 10 ) {
-
-        alert ('Too many rounds. Max = 10 Rounds')
+        alert ('Error: Please type a number smaller than 10.');
 
 
     } else {
