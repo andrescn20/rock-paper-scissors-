@@ -14,7 +14,7 @@ function computerSelection(){
         case 1 :
              return "Rock";
              break;
-             
+
         default:
              return "Scissors";
     }
@@ -93,7 +93,7 @@ function playRound ( computerSelection , playerSelection ) {
 
 function correctCapitalization(i) {
     
-    let playerInput = window.prompt('Round #'+(i+1)+': Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
+    let playerInput = window.prompt('Round #'+(i+1)+'! Make your Choice: Rock, Paper or Scissors?', 'Rock, Paper or Scissors');
     let first = playerInput.charAt(0); /*Gathers first letter of input*/
     let rest = playerInput.slice(1);   /*Gathers the rest of the letters of input*/
 
@@ -114,10 +114,18 @@ function game(){ /*Main Function*/
         if     (numberOfRoundsLoop > 10) {
             numberOfRounds = numberOfRoundsLoop
             alert ('Dont be greedy: Please type a number smaller than 10.');
-        }   
-        else if(numberOfRoundsLoop < 10) {
-             numberOfRounds = numberOfRoundsLoop
         }
+
+        else if(numberOfRoundsLoop < 10) {
+
+            if ( (numberOfRoundsLoop % 2) === 0){
+                alert ('Please enter an odd number to avoid a tie.');
+                numberOfRounds = 11;
+            } else {
+                numberOfRounds = numberOfRoundsLoop
+            }
+        }
+
         else{
             numberOfRounds = 11;
             alert('Invalid Input. Only numbers accepted');
@@ -164,7 +172,7 @@ function game(){ /*Main Function*/
                 globalWinnerText = "The Computer won... as expected."
 
             } else if (playerPoints == computerPoints) {
-                globalWinnerText = "This match is a Draw"
+                globalWinnerText = "This shoudln't be happening lol"
 
             }
 
