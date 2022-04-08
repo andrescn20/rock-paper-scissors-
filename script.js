@@ -5,19 +5,24 @@
 function computerSelection(){
     
     let selection = parseInt(Math.random()*3); /*Random number from 0 to 2*/
-    if(selection === 0){    /*Assigns a choice to every Possibility*/
-        return "Paper";
-    } else if (selection === 1){
-        return "Rock";
-    } else {
-        return "Scissors";
+
+    switch (selection){
+        case selection === 0 : return "Paper";
+        case selection === 1 : return "Rock";
+        default              : return "Scrissors";
     }
 }
-/*Variable defined to connect functions. The value of x is dependant on who won each round*/
-let x = 0;
 
-/*Variable that determines if wether the game ran or not. Changes once a round is correctly executed*/
-let confirmround = 0; 
+let winnerstatus = 0;
+    /* States the status of the round:
+        0 = No Winner / Tie
+        1 = Player is Winning
+        2 = Computer is Winning */
+
+
+let confirmRoundExecution = 0; 
+    /* Security measure to display alternate text
+        in case no round was played */
 
 
 /*Receives selections from computer and player (input). Evaluates who won according to game rules. Lastly, 
