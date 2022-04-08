@@ -47,12 +47,16 @@ function playRound ( computerSelection , playerSelection ) {
                 }else if (playerSelection === "Paper"){
                     win = 2; 
                 }
-                break;     
+                break;    
+            default: 
+                alert('Invalid input');
+                win = 3;
             }
             
     }
     if (win === 1)       { winnerText = "Computer wins this Round."}
-    else if (win ===2)             { winnerText = "You win this Round."}
+    else if (win ===2)   { winnerText = "You win this Round."}
+    else if (win === 3)  { winnerText = "This Round failed"}
     x = win;
     console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText);
 }
