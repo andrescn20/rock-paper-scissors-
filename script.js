@@ -9,15 +9,16 @@ function computerSelection(){
     switch (selection){
         case selection === 0 : return "Paper";
         case selection === 1 : return "Rock";
-        default              : return "Scrissors";
+        default              : return "Scissors";
     }
 }
 
-let winnerstatus = 0;
+let winnerStatus = 0;
     /* States the status of the round:
-        0 = No Winner / Tie
+        0 = No Winner / Tie (default)
         1 = Player is Winning
-        2 = Computer is Winning */
+        2 = Computer is Winning 
+        3 = Invalid User Input */
 
 
 let confirmRoundExecution = 0; 
@@ -29,49 +30,54 @@ let confirmRoundExecution = 0;
 shows a message declaring the winner of the round*/
 
 function playRound ( computerSelection , playerSelection ) {
-    let winnerText = "Its a Draw.";
-    x=0;
-    let win = x;
-    if (computerSelection === playerSelection ){
-        x = 0;
+
+    let winnerText = "Its a Draw."; 
+    winnerStatus = 0;  /*Reset winnerStatus to default*/
+
+    if (computerSelection === playerSelection ){  /*Determine who won the round*/
+        winnerStatus = 0;
+
     }else{
         switch (playerSelection) {
 
             case ("Paper"):
                 if ( computerSelection === "Rock" ){
-                    win = 1;
+                    winnnerStatus = 1;
 
                 }else if (computerSelection === "Scissors"){
-                    win = 2; 
+                    winnerStatus = 2; 
                 }
                 break;
 
             case ("Scissors"):
                 if ( computerSelection === "Rock" ){
-                    win = 2; 
+                    winnerStatus = 2; 
 
                 }else if (computerSelection === "Paper"){
-                    win = 1;
+                    winnerStatus = 1;
                 }
                 break;
+
             case ("Rock"):
                 if (computerSelection === "Scissors" ){
-                    win = 1;
+                    winnerStatus = 1;
+
                 }else if (computerSelection === "Paper"){
-                    win = 2; 
+                    winnerStatus = 2; 
                 }
                 break;    
+
             default: 
                 alert('Invalid input');
-                win = 3;
+                winnerStatus = 3;
             }
             
     }
-    if (win === 2)       { winnerText = "Computer wins this Round."}
-    else if (win ===1)   { winnerText = "You win this Round."}
-    else if (win === 3)  { winnerText = "This Round failed."}
-    x = win;
-    confirmround = 1;
+
+    if      (winnerStatus === 2){ winnerText = "Computer wins this Round."} 
+    else if (winnerStatus === 1)     { winnerText = "You win this Round."}
+    else if (winnerStatus === 3)     { winnerText = "This Round failed."}
+    confirmRoundExecution = 1; /*Round Correctly Executed*/
     console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText);
 }
 
@@ -104,7 +110,7 @@ function game(){
             /*Round is played*/
             playRound(computerSelection(), upperCase(i));
 
-            let point = x; 
+            let point = winnerStatus; 
 
                 if (point === 0){
                     playercount = playercount;
@@ -113,7 +119,7 @@ function game(){
                     playercount = playercount;
                     computercount = computercount + 1;
                 } else if (point === 1){
-                    playercount = playercount +1;
+                    playercount = playercount + 1;
                     computercount = computercount;
             }
         }
@@ -121,7 +127,7 @@ function game(){
 
         let globalWinnerText = "Invalid Input. Please Enter a number next time"
 
-        if (confirmround === 0){
+        if (confirmRoundExecution === 0){
             
         console.log(globalWinnerText);
 
