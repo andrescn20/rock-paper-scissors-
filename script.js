@@ -99,6 +99,7 @@ function game(){ /*Main Function*/
     let numberOfRounds = 0;
     let playerPoints = 0;
     let computerPoints = 0;
+    let playedRounds = 0;
     
     do {  
         let numberOfRoundsLoop = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
@@ -118,15 +119,23 @@ function game(){ /*Main Function*/
     while (numberOfRounds > 10)
     
         
-        for (i=0; i < (numberOfRounds); i++) {
+    while (playedRounds < numberOfRounds) {
            
-            playRound(computerSelection(), correctCapitalization(i));
-                
+        playRound(computerSelection(), correctCapitalization(playedRounds));
+
             switch(winnerStatus){
-                case (1): playerPoints++;
+                case (1): 
+                    playerPoints++;
+                    playedRounds++;
                     break;
-                case (2): computerPoints++;
+
+                case (2): 
+                    computerPoints++;
+                    playedRounds++;
                     break; 
+
+                case (0):
+                    playedRounds++; 
             }
         }
     
