@@ -28,11 +28,6 @@ let winnerStatus = 0;
         3 = Invalid User Input */
 
 
-let confirmRoundExecution = 0; 
-    /* Security measure to display alternate text
-        in case no round was played */
-
-
 /*Receives selections from computer and player (input). Evaluates who won according to game rules. Lastly, 
 shows a message declaring the winner of the round*/
 
@@ -85,8 +80,6 @@ function playRound ( computerSelection , playerSelection ) {
     else if (winnerStatus === 1)     { winnerText = "You win this Round."}
     else if (winnerStatus === 3)     { winnerText = "This Round failed."}
 
-    confirmRoundExecution = 1; /*Round Correctly Executed*/
-
     /*Generate Round winner text*/
     console.log("Computer chose "+computerSelection+" . You chose "+playerSelection+". "+winnerText);
 }
@@ -100,6 +93,9 @@ function correctCapitalization(i) {
     return first.toUpperCase()+rest.toLowerCase();  /*Generate output with correct Capitalization*/
 }
 
+function printWinner(computerPoints, playerPoints) {
+    console.log('Computer scored: ' + computerPoints + '. You scored: ' + playerPoints + '. ' + globalWinnerText);
+}
 
 
 function game(){ /*Main Function*/
@@ -151,31 +147,19 @@ function game(){ /*Main Function*/
 
             }
         }
-    
-
-        let globalWinnerText = "Invalid Input. Please Enter a number next time"
-
-        if (confirmRoundExecution === 0){
-            
-        console.log(globalWinnerText);
-
-        }else {
 
             if (playerPoints > computerPoints){
 
                 globalWinnerText = "You won this match... We'll meet again"
 
-            } else if (playerPoints < computerPoints){
+            } else{
         
                 globalWinnerText = "The Computer won... as expected."
 
-            } else if (playerPoints == computerPoints) {
-                globalWinnerText = "This shoudln't be happening lol"
-
-            }
-
-            console.log('Computer scored: '+computerPoints+'. You scored: '+playerPoints+'. '+globalWinnerText);
+            printWinner(computerPoints, playerPoints);
         }    
     
         
     }
+
+
