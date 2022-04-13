@@ -8,8 +8,8 @@ function computerSelection(){
 
     switch (selection){
         case 0 : 
-            return "Paper";
-            break;
+             return "Paper";
+             break;
 
         case 1 :
              return "Rock";
@@ -30,7 +30,6 @@ let winnerStatus = 0;
 
 /*Receives selections from computer and player (input). Evaluates who won according to game rules. Lastly, 
 shows a message declaring the winner of the round*/
-
 function playRound ( computerSelection , playerSelection ) {
 
     let winnerText = "Its a Draw."; 
@@ -97,8 +96,8 @@ function printWinner(computerPoints, playerPoints) {
     console.log('Computer scored: ' + computerPoints + '. You scored: ' + playerPoints + '. ' + globalWinnerText);
 }
 
-
-function game(){ /*Main Function*/
+ /*Main Function*/
+function game(){
     let numberOfRounds = 0;
     let playerPoints = 0;
     let computerPoints = 0;
