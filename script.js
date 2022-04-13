@@ -1,4 +1,42 @@
 
+/*Button Actions*/
+
+const startGameBtn = document.querySelector ('#startGame');
+startGameBtn.addEventListener('click', () => {gameStart()});
+
+function gameStart(){
+
+    /*Select parent div*/
+    const buttons = document.querySelector ('.buttons');
+
+    /*Creates the 3 buttons and their text*/
+    const rock = document.createElement ('button');
+    rock.setAttribute( 'id', 'rock');
+    const rockText =  document.createTextNode('Rock');
+
+    const paper = document.createElement ('button');
+    paper.setAttribute( 'id', 'paper');
+    const paperText =  document.createTextNode('Paper');
+
+    const scissors = document.createElement ('button');
+    scissors.setAttribute( 'id', 'scissors');
+    const scissorsText =  document.createTextNode('Scissors');
+
+    /*Appends text and button to parent div*/
+    buttons.appendChild(rock);
+    rock.appendChild(rockText);
+
+    buttons.appendChild(paper);
+    paper.appendChild(paperText);
+
+    buttons.appendChild(scissors);
+    scissors.appendChild(scissorsText);
+
+    startGameBtn.remove();
+
+
+    game();
+}
 
 /*Randomly Generate Rock, Paper or Scissors*/
 
@@ -98,38 +136,65 @@ function printWinner(computerPoints, playerPoints) {
 
  /*Main Function*/
 function game(){
+
     let numberOfRounds = 0;
     let playerPoints = 0;
     let computerPoints = 0;
     let playedRounds = 0;
+    let startRound = false; 
+    let numberOfRoundsLoop = 0;
+
+
+    const inputContainer = document.querySelector('.inputContainer');
+    const input = document.createElement('input');
+    const submit = document.createElement ('button');
+    const submitText = document.createTextNode ('submit');
+    input.setAttribute('type', 'number');
+    input.setAttribute('placeHolder', 'Enter the amount of rounds. Enter 0 to exit');
+    input.setAttribute ('id' ,'submit');
+    inputContainer.appendChild(input);
+    inputContainer.appendChild(submit);
+    submit.appendChild(submitText);
     
-    do {  /*Loops until the User's input is an even number between 1 and 10*/
-        let numberOfRoundsLoop = parseInt(window.prompt('Define how many rounds decide the winner.', '5'));
+    submit.addEventListener('click', function () {defineRounds()});
+
+    function defineRounds (){
+
+        numberOfRoundsLoop = +document.querySelector('#submit').value;
 
         if     (Math.abs(numberOfRoundsLoop) > 10) {
-            numberOfRounds = numberOfRoundsLoop
+            numberOfRounds = numberOfRoundsLoop;
             alert ('Dont be greedy: Please type a number smaller than 10.');
+            startRound = false; 
         }
 
         else if(Math.abs(numberOfRoundsLoop) < 10) {
 
-            if ( (numberOfRoundsLoop % 2) === 0){
+            if ( (numberOfRoundsLoop % 2) === 0 && numberOfRoundsLoop !== 0){
                 alert ('Please enter an odd number to avoid a tie.');
-                numberOfRounds = 11;
-            } else {
+                startRound = false; 
+            }
+
+            else if (numberOfRoundsLoop === 0){ return } 
+            
+            else {
                 numberOfRounds = Math.abs(numberOfRoundsLoop);
+                startRound= true; 
             }
         }
 
         else{
-            numberOfRounds = 11;
+            startRound = false;
             alert('Invalid Input. Only numbers accepted');
         }
       }
-    while (numberOfRounds >= 10)
+    alert (numberOfRounds);
+    return numberOfRounds;
+
     
+    }
         
-    while (playedRounds < numberOfRounds) {
+    while (playedRounds < numberOfRounds && startRound === true)  {
            
         playRound(computerSelection(), correctCapitalization(playedRounds));
 
@@ -156,9 +221,7 @@ function game(){
                 globalWinnerText = "The Computer won... as expected."
 
             printWinner(computerPoints, playerPoints);
-        }    
-    
-        
-    }
+        } 
+
 
 
