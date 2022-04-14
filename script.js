@@ -84,6 +84,11 @@ startGameBtn.onclick = function () {
     playedRounds = 0;
 
     outputText.data = 'Play a round to display round winner';
+    computerGlobalScoreText.data = computerPoints; 
+    playerGlobalScoreText.data = playerPoints; 
+    computerSelectionText.data = '';
+    playerSelectionText.data = '';
+
 
     buttons.appendChild(rock);
     rock.appendChild(rockText);
