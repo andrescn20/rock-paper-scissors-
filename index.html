@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", 'height = device'>
     <title>Rock Paper Scissors</title>
     <script src = "script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
 
-    <button id = 'startGame'> Click to Start Game </button>
-    <div class = 'roundContainer'> <!-- Delivers messages to the user --> </div>
-    <div class = 'buttons'> <!-- Buttons will be created here --> </div> 
-    <div class = 'outputText'> <!-- Buttons will be created here --> </div> 
-    <div class = 'points'> <!--Points will be displayed here after each round--> </div>
+<body>
+    <div class = 'mainContainer'>
+        <button id = 'startGame'> Click to Start Game </button>
+        <div class = 'roundContainer'> <!-- Delivers messages to the user --> </div>
+        <div class = 'buttons'> <!-- Buttons will be created here --> </div> 
+        <!--<div class = 'scoreContainer'><!--A Chart will be generated inside of here </div> -->
+        <div class = 'outPutText'> <!-- Announces who won each round--></div>
+    </div>
 </body>
+
 </html>

@@ -2,7 +2,10 @@
 /*Button Actions*/
 const body = document.querySelector('body');
 const startGameBtn = document.querySelector('#startGame');
+const mainContainer = document.querySelector('.mainContainer');
 
+
+/*Regarding selection buttons*/
 const buttons = document.querySelector('.buttons');
 
 const rock = document.createElement('button');
@@ -14,15 +17,54 @@ const paperText = document.createTextNode('Paper');
 const scissors = document.createElement('button');
 const scissorsText = document.createTextNode('Scissors');
 
+/*Regarding text above buttons*/
 const roundContainer = document.querySelector('.roundContainer');
 const roundText = document.createTextNode('Please, make a selection for each round:');
-const outputContainer = document.querySelector('.outputText');
+const outputContainer = document.querySelector('.outPutText');
 const outputText = document.createTextNode('');
 
-const points = document.querySelector('.points');
-const pointsText = document.createTextNode ('Computer points: 0. Your points: 0');
 
-const finalScore = document.createTextNode ('');
+/*Regarding Score Chart*/
+
+/*Contains 3 columns*/
+const scoreContainer = document.createElement('scoreContainer');
+scoreContainer.setAttribute('class', 'scoreContainer')
+
+/*Define 3 div (columns) and their id's*/
+const scoreTitlesdiv = document.createElement('div');
+scoreTitlesdiv.setAttribute ('id' , 'scoreTitlesdiv');
+const playerScorediv = document.createElement ('div');
+playerScorediv.setAttribute ('id' , 'playerScorediv');
+const computerScorediv = document.createElement ('div');
+computerScorediv.setAttribute ('id' , 'computerScorediv');
+
+/*Define 3 rows for every column*/ 
+
+/*Columns for scoreTitlesdiv:*/
+const blanck = document.createElement('div');
+const currentRound = document.createElement('div');
+const currentRoundText = document.createTextNode('This Round:');
+const globalScore = document.createElement('div');
+const globalScoreText = document.createTextNode('Score:');
+/*Columns for computercorediv: */
+const computerTitle = document.createElement('div'); 
+const computerTitleText = document.createTextNode ('Computer');
+const computerSelect = document.createElement ('div');
+const computerSelectionText = document.createTextNode('');
+const computerGlobalScore = document.createElement('div');
+const computerGlobalScoreText = document.createTextNode('');
+/*Columns for playerScorediv:*/
+const playerTitle = document.createElement('div'); 
+const playerTitleText = document.createTextNode ('Player');
+const playerSelect = document.createElement ('div');
+const playerSelectionText = document.createTextNode('');
+const playerGlobalScore = document.createElement ('div');
+const playerGlobalScoreText = document.createTextNode('');
+
+
+rock.setAttribute('class' , 'btns')
+paper.setAttribute('class' , 'btns')
+scissors.setAttribute('class' , 'btns')
 
 let winnerStatus = 0;
 /* States the status of the round:
@@ -41,7 +83,8 @@ startGameBtn.onclick = function () {
     computerPoints = 0;
     playedRounds = 0;
 
-    finalScore.remove();
+    outputText.data = 'Play a round to display round winner';
+
     buttons.appendChild(rock);
     rock.appendChild(rockText);
 
@@ -54,8 +97,35 @@ startGameBtn.onclick = function () {
     roundContainer.appendChild(roundText);
     outputContainer.appendChild(outputText);
 
-    pointsText.data = 'Computer points: ' + computerPoints + '. Your points: ' + playerPoints + '.';
-    points.appendChild(pointsText);
+    /*Score Chart*/
+    mainContainer.insertBefore(scoreContainer, outputContainer);    
+
+    /*First Column: Titles*/
+    scoreContainer.appendChild(scoreTitlesdiv);
+    scoreTitlesdiv.appendChild(blanck);
+    scoreTitlesdiv.appendChild(currentRound);
+    scoreTitlesdiv.appendChild(globalScore);
+    currentRound.appendChild(currentRoundText);
+    globalScore.appendChild(globalScoreText);
+
+    /*Second Column: Computer*/
+    scoreContainer.appendChild(computerScorediv);
+    computerScorediv.appendChild(computerTitle);
+    computerScorediv.appendChild(computerSelect);
+    computerScorediv.appendChild(computerGlobalScore);
+    computerTitle.appendChild(computerTitleText);
+    computerSelect.appendChild(computerSelectionText);
+    computerGlobalScore.appendChild(computerGlobalScoreText);
+
+    /*Third Column: Player*/
+    scoreContainer.appendChild(playerScorediv);
+    playerScorediv.appendChild(playerTitle);
+    playerScorediv.appendChild(playerSelect);
+    playerScorediv.appendChild(playerGlobalScore);
+    playerTitle.appendChild(playerTitleText);
+    playerSelect.appendChild(playerSelectionText);
+    playerGlobalScore.appendChild(playerGlobalScoreText);
+
 
     startGameBtn.remove();
 }
@@ -138,15 +208,11 @@ function playRound(computerSelection, playerSelection) {
                     winnerStatus = 2;
                 }
                 break;
-
-            default:
-                alert('Invalid input');
-                winnerStatus = 3;
         }
 
     }
 
-    if (winnerStatus === 2) { winnerText = "Computer wins this Round." }
+    if      (winnerStatus === 2) { winnerText = "Computer wins this Round." }
     else if (winnerStatus === 1) { winnerText = "You win this Round." }
     else if (winnerStatus === 3) { winnerText = "This Round failed." }
 
@@ -165,8 +231,15 @@ function playRound(computerSelection, playerSelection) {
 
 
     /*Generate Round winner text*/
-    outputText.data = "Computer chose " + computerSelection + " . You chose " + playerSelection + ". " + winnerText;
-    pointsText.data = 'Computer points: ' + computerPoints + '. Your points: ' + playerPoints + '.';
+
+    computerSelectionText.data = computerSelection;
+    playerSelectionText.data = playerSelection;
+
+    computerGlobalScoreText.data = computerPoints; 
+    playerGlobalScoreText.data = playerPoints; 
+
+    outputText.data =  winnerText;
+    
     if (playedRounds < 5){
         
         if (playerPoints > computerPoints) {
@@ -180,22 +253,17 @@ function playRound(computerSelection, playerSelection) {
     }
     else if (playedRounds === 5){
 
-        pointsText.remove();
-        finalScore.data = 'Computer scored: ' + computerPoints + '. You scored: ' + playerPoints + '. ' + globalWinnerText; 
-        points.appendChild(finalScore);
+        outputText.data = 'Computer scored: ' + computerPoints + '. You scored: ' + playerPoints + '. ' + globalWinnerText; 
+        
+    
 
+        scoreContainer.remove();
         rock.remove();
         paper.remove();
         scissors.remove();
         roundText.remove();
-        roundText.remove();
-        outputText.remove();
 
-        body.appendChild(startGameBtn);
-
-     
-        
-        
+        body.appendChild(startGameBtn);        
     }
     else {}
 }

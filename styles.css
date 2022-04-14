@@ -22,10 +22,47 @@ div {
     transition: content 2s;
 }
 
+.scoreContainer{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+.scoreContainer div{
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    
+}
+
+#scoreTitlesdiv{
+    flex-grow: 1;
+}
+
+#computerScorediv,
+#playerScorediv {
+    width: 265px;
+}
+
+
+.scoreContainer div div {
+    align-items: center;
+}
+
+#scoreTitlesdiv div {
+    align-items: flex-start;
+}
+
+#computerScorediv div,
+#playerScorediv div,
+#scoreTitlesdiv div,
+.scoreContainer{
+    border: 2px solid #000
+}
+
 .mainContainer{
     display: flex;
     flex-direction: column;
-    /*border: 2px solid red;*/
 }
 
 
@@ -53,7 +90,6 @@ div {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  flex-wrap: wrap;
 }
 
 #startGame:focus {
